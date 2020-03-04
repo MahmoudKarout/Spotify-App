@@ -1,12 +1,4 @@
-# Spotify Profile
-
-> A web app for artist search
-
-Built with a bunch of things, but to name a few:
-
-- [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
-- [Create React App](https://github.com/facebook/create-react-app)
-
+# Spotify Artist Search
 
 ## Setup
 
