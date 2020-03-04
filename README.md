@@ -15,7 +15,7 @@ export REDIRECT_URI=YYYY
 4. `npm start`
 5. go to `localhost:3000`
 
- 
+> important : there is problem in the arist albums if you check in the API response devtools/Network the JSON string contains the same album several times.
 
 
 
