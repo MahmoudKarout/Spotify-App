@@ -1,0 +1,172 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  .card:hover{
+	  transform: scale(1.1) ;
+    z-index: 1000;
+    transition: all .2s ease-in-out;
+  }
+  
+  .title {
+	  margin-top: 3px ;
+	color: grey;
+	font-size: 18px;
+  }
+
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+
+  .results-container {
+    display: flex;
+    flex-flow: wrap;
+  }
+  
+  .result-items {
+    position: relative;
+    padding: 16px;
+    border: 1px solid #898989;
+    margin: 16px;
+    text-align: center;
+    min-width: 200px;
+    text-decoration: none;
+    box-shadow: 2px 2px 2px #898989;
+  }
+  
+  .image-username {
+    color: coral;
+    font-size: 18px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px 10px;
+  
+  }
+  
+  .image {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .image-wrapper {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    justify-content: center;
+  }
+  
+  /*Loader*/
+  .search-loading {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  /*Show and hide*/
+  .show {
+    display: inline-block;
+  }
+  
+  .hide {
+    display: none;
+  }
+  .heading {
+    font-size: 30px;
+    padding: 16px 0;
+    color: #444;
+    text-align: center;
+  }
+  
+  /*Container*/
+  .container {
+    margin: 36px auto;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .search-label {
+    position: relative;
+  }
+  
+  .container input {
+    width: 100%;
+    padding: 16px;
+    font-size: 36px;
+    font-style: italic;
+      color: #444;
+      border: 1px  white;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: -10px;
+    font-size: 24px;
+    color: #555;
+    right: 18px;
+  }
+.previewOnSpot{
+  background-color:#1DB954  !important;
+  color: white !important;
+  
+}
+.box{
+	max-width: 100%;
+	height : 300px; 
+}  
+  img{
+	width: 100%;
+	height: 100%;
+  }
+  .form-control {
+	border: 0px solid #ced4da !important;
+  }
+
+  .form-control::placeholder {
+	font-size: 0.95rem;
+	color: #aaa;
+	font-style: italic;
+  }
+  
+  .form-control:focus {
+	box-shadow: none;
+  }
+  
+  .form-control-underlined {
+	border-width: 0;
+	border-bottom-width: 1px;
+	border-radius: 0;
+	padding-left: 0;
+  }
+  
+
+
+
