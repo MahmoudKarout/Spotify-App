@@ -36,7 +36,6 @@ class ArtistAlbums extends Component {
         });
 
     }
-
     renderSearchResults = () => {
         const { results } = this.state;
        
@@ -55,18 +54,13 @@ class ArtistAlbums extends Component {
                 </div>
             );
         }
-
     };
     render() {
-
         return (
             <div className="container-fluid" style={{ color: "#191414", textAlign: "center" }}>
                 <h2 className="heading" style={{ color: "white" }}>{this.props.match.params.ArtistName} Albums</h2>
                 {this.renderSearchResults()}
             </div>
-
-
-
         )
     }
 }

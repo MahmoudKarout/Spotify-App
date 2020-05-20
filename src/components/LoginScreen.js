@@ -37,18 +37,18 @@ const LoginScreen = class extends React.Component {
   }
 
   handleClick = () => {
-    const client_id = "e5abbee6e0fd4e4bbd080c6d212ca520" || process.env.CLIENT_ID; 
+    const client_id = "e5abbee6e0fd4e4bbd080c6d212ca520" || process.env.CLIENT_ID;
     const redirect_uri = "http://localhost:3000" || process.env.REDIRECT_URI;
     const scope = "user-read-private user-read-email";
     const state = generateRandomString(16);
 
     localStorage.setItem(stateKey, state);
-                 let url = "https://accounts.spotify.com/authorize";
-                 url += "?response_type=token";
-                 url += `&client_id=${encodeURIComponent(client_id)}`;
-                 url += `&scope=${encodeURIComponent(scope)}`;
-                 url += `&redirect_uri=${encodeURIComponent(redirect_uri)}`;
-                 url += `&state=${encodeURIComponent(state)}`;
+    let url = "https://accounts.spotify.com/authorize";
+    url += "?response_type=token";
+    url += `&client_id=${encodeURIComponent(client_id)}`;
+    url += `&scope=${encodeURIComponent(scope)}`;
+    url += `&redirect_uri=${encodeURIComponent(redirect_uri)}`;
+    url += `&state=${encodeURIComponent(state)}`;
 
     window.location = url;
   };
@@ -56,8 +56,8 @@ const LoginScreen = class extends React.Component {
     return (
       <Login>
         <h1>Spotify Profile</h1>
-    <LoginButton onClick={this.handleClick}>Log in to Spotify</LoginButton>
-    </Login>
+        <LoginButton onClick={this.handleClick}>Log in to Spotify</LoginButton>
+      </Login>
     )
   }
 };
