@@ -7,9 +7,6 @@ class Authenticator extends Component {
     componentDidMount() {
         sessionStorage.setItem("access_token", getHashParams().access_token);
         window.location.replace("http://localhost:3000/search/artist");
-          
-   
-          
     }
     render() {
         return (

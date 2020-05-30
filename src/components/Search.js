@@ -6,7 +6,7 @@ import Axios from 'axios';
 import Loader from './icons/loader';
 import { SearchBar } from './SearchBar';
 import Paging from '../components/Paging';
-import {NotFound } from '../components/NotFound';
+import { NotFound } from '../components/NotFound';
 import LoginScreen from './LoginScreen';
 
 
@@ -103,11 +103,12 @@ class Search extends Component {
     }
     renderSearchResults = () => {
         const { results } = this.state;
+
         if (Object.keys(results).length && results.length) {
             return (
                 <div className="row">
 
-                  
+
                     {results.map((result, index) => {
                         return (
                             <ArtistCard result={result} key={++index} />
@@ -119,11 +120,11 @@ class Search extends Component {
         }
     };
     render() {
-        const { query, loading, message} = this.state;
+        const { query, loading, message } = this.state;
         return (
 
             <div style={{ position: "relative", height: "max-content" }}>
-                {sessionStorage.getItem("access_token") && sessionStorage.getItem("access_token")!== "undefined"?
+                {sessionStorage.getItem("access_token") && sessionStorage.getItem("access_token") !== "undefined" ?
                     (<div>
                         <div className="searchComp" >
                             <h2 className="heading" >Search Spotify Artist </h2>
@@ -133,7 +134,7 @@ class Search extends Component {
                             {loading ? <div style={{ position: "absolute", top: "100%", left: "50%", paddingBottom: "20px" }}><Loader /> </div> : this.renderSearchResults()}
                         </div>
                     </div>) :
-                     (<NotFound/>)
+                    (<NotFound />)
                 }
             </div>
 
