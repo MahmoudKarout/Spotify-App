@@ -30,7 +30,7 @@ export REDIRECT_URI=YYYY
 1. Routing : urls are now readable
 2. Added a footer
 3. Paging is now more user friendly
-4. fixed the design of the two pages
-5. default `localhost:3000/login`
+4. Fixed the design of the two pages
+5. Default `localhost:3000/login`
 
 
