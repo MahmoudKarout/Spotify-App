@@ -38,14 +38,14 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
 
-       
-            
-                <Route path='/login' exact component={LoginScreen} title="Login" />
-                <Route path='/' exact component={Middle} title="Login" />
-                <Route path='/search/artist' exact component={Search} />
-            
-                <Route path='/AlbumArtist/:ArtistId/:ArtistName' exact component={ArtistAlbums} />
-          
+
+            <Route path='/' exact component={Middle} />
+            <Route path='/login' exact component={LoginScreen} title="Login" />
+
+            <Route path='/search/artist' exact component={Search} />
+
+            <Route path='/AlbumArtist/:ArtistId/:ArtistName' exact component={ArtistAlbums} />
+
           </Switch>
         </BrowserRouter>
 
