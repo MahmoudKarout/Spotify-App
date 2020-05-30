@@ -107,7 +107,7 @@ class Search extends Component {
             return (
                 <div className="row">
 
-                    <Paging state={this.state} updatePage={this.updatePage} />
+                  
                     {results.map((result, index) => {
                         return (
                             <ArtistCard result={result} key={++index} />
