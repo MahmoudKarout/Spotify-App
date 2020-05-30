@@ -22,7 +22,7 @@ export REDIRECT_URI=YYYY
 
 3. `npm install`
 4. `npm start`
-5. go to `localhost:3000/login`
+5. go to `localhost:3000/`
 
  
 ## Things I fixed/changed
@@ -31,6 +31,6 @@ export REDIRECT_URI=YYYY
 2. Added a footer
 3. Paging is now more user friendly
 4. Fixed the design of the two pages
-5. Default `localhost:3000/login`
+
 
 
