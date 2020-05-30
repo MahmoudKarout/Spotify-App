@@ -28,9 +28,6 @@ class App extends Component {
 
 
   render() {
-
-    const token = sessionStorage.getItem("access_token");
-
     return (
 
       <AppContainer>
