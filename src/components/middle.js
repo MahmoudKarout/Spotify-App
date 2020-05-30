@@ -9,7 +9,8 @@ class Authenticator extends Component {
      setTimeout(() => {   
         window.location.replace("http://localhost:3000/search/artist");
            }, 1000);
-      // window.location.replace("http://localhost:3000/search/artist");
+   
+          
     }
     render() {
         return (

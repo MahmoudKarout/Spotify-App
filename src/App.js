@@ -34,13 +34,16 @@ class App extends Component {
         <CusNavbar />
         <BrowserRouter>
           <Switch>
-            <Route path='/' exact component={Middle} title="Search Artist" />
-            <Route path='/login' exact component={LoginScreen} title="Login" />
+
+            {/* {sessionStorage.getItem("access_token") ? */}
+              <Route path='/' exact component={ sessionStorage.getItem("access_token") || sessionStorage.getItem("access_token") == "undefined" ?  Middle : LoginScreen } title="Login" /> 
+              {/* <Route path='/login' exact component={LoginScreen} title="Login" /> */}
+      
             <Route path='/search/artist' exact component={Search} />
             <Route path='/AlbumArtist/:ArtistId/:ArtistName' exact component={ArtistAlbums} />
           </Switch>
         </BrowserRouter>
-      
+
       </AppContainer>
 
     );

@@ -43,6 +43,7 @@ const LoginScreen = class extends React.Component {
   componentDidMount() {
     // localStorage.removeItem(stateKey);
     localStorage.clear();
+    sessionStorage.clear();
     document.title = "Login";
 
   }

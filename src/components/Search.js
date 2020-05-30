@@ -122,7 +122,7 @@ class Search extends Component {
         return (
 
             <div style={{ position: "relative", height: "max-content" }}>
-                {sessionStorage.getItem("access_token")?
+                {sessionStorage.getItem("access_token") && sessionStorage.getItem("access_token")!== "undefined"?
                     (<div>
                         <div className="searchComp" >
                             <h2 className="heading" >Search Spotify Artist </h2>
