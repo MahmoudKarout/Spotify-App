@@ -22,7 +22,7 @@ export REDIRECT_URI=YYYY
 
 3. `npm install`
 4. `npm start`
-5. go to `localhost:3000`
+5. go to `localhost:3000/login`
 
  
 
