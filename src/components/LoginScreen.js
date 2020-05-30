@@ -41,9 +41,8 @@ const stateKey = "spotify_auth_state";
 const LoginScreen = class extends React.Component {
 
   componentDidMount() {
-    // localStorage.removeItem(stateKey);
-      //  sessionStorage.setItem("access_token", getHashParams().access_token);
-    // window.location.replace("http://localhost:3000/search/artist");
+    localStorage.clear();
+sessionStorage.clear();
 
     document.title = "Login";
 
