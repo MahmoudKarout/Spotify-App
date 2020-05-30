@@ -6,6 +6,7 @@ import Axios from 'axios';
 import Loader from './icons/loader';
 import { SearchBar } from './SearchBar';
 import Paging from '../components/Paging';
+import {NotFound } from '../components/NotFound';
 
 
 class Search extends Component {
@@ -117,17 +118,24 @@ class Search extends Component {
         }
     };
     render() {
-        const { query, loading, message } = this.state;
+        const { query, loading, message} = this.state;
         return (
+
             <div style={{ position: "relative", height: "max-content" }}>
-                <div className="searchComp" >
-                    <h2 className="heading" >Search Spotify Artist </h2>
-                    <SearchBar handleOnInputChange={this.handleOnInputChange} value={query} message={message} />
-                </div>
-                <div className="container-fluid">
-                    {loading ? <div style={{ position: "absolute", top: "100%", left: "50%", paddingBottom: "20px" }}><Loader /> </div> : this.renderSearchResults()}
-                </div>
+                {sessionStorage.getItem("access_token")?
+                    (<div>
+                        <div className="searchComp" >
+                            <h2 className="heading" >Search Spotify Artist </h2>
+                            <SearchBar handleOnInputChange={this.handleOnInputChange} value={query} message={message} />
+                        </div>
+                        <div className="container-fluid">
+                            {loading ? <div style={{ position: "absolute", top: "100%", left: "50%", paddingBottom: "20px" }}><Loader /> </div> : this.renderSearchResults()}
+                        </div>
+                    </div>) :
+                     (<NotFound/>)
+                }
             </div>
+
         )
     }
 }
