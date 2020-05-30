@@ -26,5 +26,11 @@ export REDIRECT_URI=YYYY
 
  
 
+### Things I Fixed: 
+
+1. The Urls are now readable
+2. Added Footer
+3. Paging is now more user friendly 
+4. Fixed the design of both pages
 
 
