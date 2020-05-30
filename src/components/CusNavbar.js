@@ -1,17 +1,21 @@
 import React from 'react';
 import '../App.css';
 import { Navbar } from 'react-bootstrap';
+import SpotifyLogo from './icons/spotifyLogo';
+
+// import RefreshIcon from './icons/refresh';
 
 
 export const CusNavbar = () => {
   return (
-    <Navbar  >
-      <Navbar.Brand id="font-spotify-color" href="#home">
-        <a href="https://www.spotify.com/lb-en/" className="navbar-highlight-white svelte-18o1xvt"  style = {{color: '#1DB954 '}}>
-         <img   alt= "brand" style = {{width: "100px"}} src ="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png" /></a>
+    <Navbar  className="py-0">
+      <Navbar.Brand id="font-spotify-color" className="p-0 m-0"  href="#home">
+        <SpotifyLogo cusHeight={"100"} cusWidth={"150"} />
 
       </Navbar.Brand>
+     {/* <a> <button  className="refresh_access"> <RefreshIcon /> &nbsp; Refresh Access</button></a> */}
       <Navbar.Toggle />
+
       <Navbar.Collapse className="justify-content-end ">
       </Navbar.Collapse>
     </Navbar>

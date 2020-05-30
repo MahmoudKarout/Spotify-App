@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-
-const Login = styled.button`
+const Login = styled.div`
 display: flex;
+height: calc(100vh - 100px);
 justify-content: center;
 align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
+flex-direction: column;
+width: 50%;
+margin: auto;
+position: relative;
+top: calc(50% - 100px);
+@media (max-width: 600px) {
+width:100%
+}
+
   h1 {
     font-size: 32px;
   }
@@ -32,8 +39,15 @@ const LoginButton = styled.a`
 const stateKey = "spotify_auth_state";
 
 const LoginScreen = class extends React.Component {
+
   componentDidMount() {
-    localStorage.removeItem(stateKey);
+    // localStorage.removeItem(stateKey);
+    localStorage.clear();
+    document.title = "Login";
+
+  }
+  componentDidUpdate() {
+
   }
 
   handleClick = () => {
@@ -42,7 +56,7 @@ const LoginScreen = class extends React.Component {
     const scope = "user-read-private user-read-email";
     const state = generateRandomString(16);
 
-    localStorage.setItem(stateKey, state);
+    sessionStorage.setItem(stateKey, state);
     let url = "https://accounts.spotify.com/authorize";
     url += "?response_type=token";
     url += `&client_id=${encodeURIComponent(client_id)}`;
@@ -51,8 +65,12 @@ const LoginScreen = class extends React.Component {
     url += `&state=${encodeURIComponent(state)}`;
 
     window.location = url;
+
+
+
   };
   render() {
+
     return (
       <Login>
         <h1>Spotify Profile</h1>

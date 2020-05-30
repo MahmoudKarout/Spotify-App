@@ -6,10 +6,7 @@
     -ms-transform-origin: center center;
     transform-origin: center center;
 
-    position: absolute;
-    top: 100%;
-    left: 50%;
-
+   
     width: 100px;
     height: 100px;
 

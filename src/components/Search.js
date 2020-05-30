@@ -1,131 +1,136 @@
 import React, { Component } from 'react';
 
 import '../styles/Search.css';
-// import {getSearchArtist} from from '../spotify/index';
-import { ArtistCard } from './ArtistCard';
-// import { SearchBar } from './SearchBar';
+import { ArtistCard } from './ArtistCard/ArtistCard';
 import Axios from 'axios';
 import Loader from './icons/loader';
-import { headers} from '../spotify/index';
 import { SearchBar } from './SearchBar';
+import Paging from '../components/Paging';
+
 
 class Search extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
+            token: '',
             query: '',
             results: {},
             loading: false,
             message: '',
-            updatedPageNo: 0,
-            limit: 20
+            offset: 0,
+            totalItems: 0,
+            limit: 20,
+            pageNumber: 1,
+            start: true,
+            end: false,
+
         };
         this.cancel = '';
     }
+
     handleOnInputChange = (event) => {
         const query = event.target.value;
         if (!query) {
-            this.setState({ query, results: {}, message: '', updatedPageNo: 0 });
+            this.setState({ query, results: {}, message: '', offset: 0, pageNumber: 1, start: true, end: false });
         } else {
-            this.setState({ query, loading: true, message: '' }, () => {
+            this.setState({ query, loading: true, message: '', pageNumber: 1, start: true, end: false, offset: 0 }, () => {
                 this.fetchSearchResults(query);
             });
         }
     };
-    fetchSearchResults = (query) => {
-        const { updatedPageNo, limit } = this.state;
-        const searchUrl = `https://api.spotify.com/v1/search?q=${query}&type=artist&offset=${updatedPageNo}&limit=${limit}`;
-        if (this.cancel) {
-            this.cancel.cancel();
-        }
-        this.cancel = Axios.CancelToken.source();
-        Axios.get(searchUrl, {
-            cancelToken: this.cancel.token,
-            headers
-        }).then(res => {
-            const resultNotFoundMsg = !res.data.artists.items.length ? 'there are no more search results. Please try a new search' : '';
-            this.setState({
-                results: res.data.artists.items,
-                message: resultNotFoundMsg,
-                loading: false
+    updatePage = (offset) => {
+        this.setState({
+            offset: offset,
+        },
+            () => {
+                this.fetchSearchResults()
             })
-        }).catch(
-            error => {
-                if (Axios.isCancel(error) || error) {
-                    this.setState({
-                        loading: false,
-                        message: 'failed to fetch the data'
-                    })
-                }
+    }
+    fetchSearchResults = () => {
+        const { offset, limit, query } = this.state;
+        const token = sessionStorage.getItem("access_token");
+        this.setState({
+            token: token
+        }, () => {
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+            const searchUrl = `https://api.spotify.com/v1/search?q=${query}&type=artist&offset=${offset}&limit=${limit}`;
+            if (this.cancel) {
+                this.cancel.cancel();
             }
-        )
-    }
+            this.cancel = Axios.CancelToken.source();
+            Axios.get(searchUrl, {
+                cancelToken: this.cancel.token,
+                headers
+            }).then(res => {
+                const resultNotFoundMsg = !res.data.artists.items.length ? 'there are no more search results. Please try a new search' : '';
+                this.setState({
+                    results: res.data.artists.items,
+                    totalItems: res.data.artists.total,
+                    message: resultNotFoundMsg,
+                    loading: false
+                })
+            }).catch(
+                error => {
+                    if (Axios.isCancel(error) || error) {
+                        this.setState({
+                            loading: false,
+                            message: 'fetching..'
+                        })
+                    }
+                }
+            )
+        })
 
-    GoToNextPage = () => {
-        this.setState({
-            updatedPageNo: this.state.updatedPageNo + (this.state.limit + 1)
-        }, () => {
-            this.fetchSearchResults(this.state.query);
-        })
-    }
-    GoToPreviousPage = () => {
-        this.setState({
-            updatedPageNo: 0
-        }, () => {
-            this.fetchSearchResults(this.state.query);
-        })
     }
     componentDidMount() {
         localStorage.getItem('ArtistSearch') && this.setState({
             results: JSON.parse(localStorage.getItem('ArtistSearch')),
         })
+        document.title = "Artist Search";
     }
     componentDidUpdate(nextProps, nextState) {
         localStorage.setItem('ArtistSearch', JSON.stringify(nextState.results));
+        window.scrollTo(0, 0);
+
 
     }
     renderSearchResults = () => {
         const { results } = this.state;
         if (Object.keys(results).length && results.length) {
             return (
-                <div className="container-fluid">
-                    <div className="row">
-                        {results.map((result, index) => {
-                            return (
-                                <ArtistCard result={result} key={++index} />
-                            );
-                        })}
-                    </div>
+                <div className="row">
+
+                    <Paging state={this.state} updatePage={this.updatePage} />
+                    {results.map((result, index) => {
+                        return (
+                            <ArtistCard result={result} key={++index} />
+                        );
+                    })}
+                    <Paging state={this.state} updatePage={this.updatePage} />
                 </div>
             );
         }
     };
     render() {
-        const { query, loading, updatedPageNo,message } = this.state;
+        const { query, loading, message } = this.state;
         return (
-            <div style={{ position: "relative" }}>
-                <SearchBar handleOnInputChange={this.handleOnInputChange} value={query} message={message} />
-                {/* <div className="container-fluid" style={{ color: "#191414", textAlign: "center" }}>
-                    <h2 className="heading" style={{ color: "white" }}>Search Spotify Artist</h2>
-
-                    <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                        <div className="input-group">
-                            <input type="search" style={{ height: "inherit" }} value={query} onChange={this.handleOnInputChange} placeholder="Which Artist are you looking for?" className="form-control rounded rounded-pill bg-light" />
-                            <div className="input-group-append" style={{ alignItems: "center" }}>
-                                <button id="button-addon1" type="submit" className="btn btn-link " style={{ color: "#1DB954", fontSize: "30px" }}><i className="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <p style={{ color: "red" }}>{message ? message : ''}</p>
-
-                </div> */}
-                 {loading ? <div style={{position: "absolute",top: "100%",left: "50%"}}><Loader /> </div> : this.renderSearchResults()} 
-                {query && (this.state.results) ?  <button onClick={this.GoToNextPage} > Next Page </button> : <p></p>}
-                {updatedPageNo > 0 ? <button onClick={this.GoToPreviousPage} > Previous Page </button> : <p></p>}
+            <div style={{ position: "relative", height: "max-content" }}>
+                <div className="searchComp" >
+                    <h2 className="heading" >Search Spotify Artist </h2>
+                    <SearchBar handleOnInputChange={this.handleOnInputChange} value={query} message={message} />
+                </div>
+                <div className="container-fluid">
+                    {loading ? <div style={{ position: "absolute", top: "100%", left: "50%", paddingBottom: "20px" }}><Loader /> </div> : this.renderSearchResults()}
+                </div>
             </div>
         )
-
     }
 }
+
+
 export default Search;

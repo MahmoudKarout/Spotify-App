@@ -4,47 +4,43 @@ import './App.css';
 import Search from './components/Search'
 import LoginScreen from './components/LoginScreen'
 import styled from 'styled-components/macro';
-
+import Middle from "./components/middle";
 import { CusNavbar } from './components/CusNavbar';
 import ArtistAlbums from './components/ArtistAlbums';
-import {token} from './spotify';
-
-
 import {
   BrowserRouter,
   Route,
   Switch,
-
 } from 'react-router-dom';
 
+
 const AppContainer = styled.div`
-  height: 100%;
+
+  height: max-content;
   min-height: 100vh;
   color: white;
   background-color: black;
-`; 
+`;
 class App extends Component {
 
-  state = {
-    token: '',
-  };
 
-  componentDidMount() {
-   this.setState({ token: token });
-  }
+
+
 
   render() {
     return (
-      
+
       <AppContainer>
-         <CusNavbar />
-   
+        <CusNavbar />
         <BrowserRouter>
           <Switch>
-            <Route path='/' exact component={token ? Search : LoginScreen} />
+            <Route path='/login' exact component={LoginScreen} title="Login" />
+            <Route path='/' exact component={Middle} title="Search Artist" />
+            <Route path='/search/artist' exact component={Search} />
             <Route path='/AlbumArtist/:ArtistId/:ArtistName' exact component={ArtistAlbums} />
           </Switch>
-        </BrowserRouter> 
+        </BrowserRouter>
+      
       </AppContainer>
 
     );

@@ -1,8 +1,14 @@
 .App {
   text-align: center;
- font-family:  Circular, Helvetica, Arial, sans-serif;
+  font-Family:'Work Sans', sans-serif;
+  height: 100%;
+
 
 }
+.fxIkTR {
+  height: max-content;
+}
+
 #font-spotify-color{
   color: white;
   align-items: center;
@@ -35,6 +41,7 @@ color: black;
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
@@ -47,3 +54,30 @@ color: black;
     transform: rotate(360deg);
   }
 }
+
+footer{
+  text-align: center;
+    position: relative;
+    bottom: 0;
+    font-Family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    padding: 2em;
+    color: rgb(220,220,220);
+    background-color: rgba(29, 185, 84);
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.refresh_access{
+
+  background-color: rgba(29, 185, 84) ;
+  width: 15%;
+  border-radius: 2em;
+  font-size: 1em;
+}
+
