@@ -7,6 +7,7 @@ import Loader from './icons/loader';
 import { SearchBar } from './SearchBar';
 import Paging from '../components/Paging';
 import {NotFound } from '../components/NotFound';
+import LoginScreen from './LoginScreen';
 
 
 class Search extends Component {

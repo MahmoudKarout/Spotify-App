@@ -6,9 +6,8 @@ import Loader from '../components/icons/loader'
 class Authenticator extends Component {
     componentDidMount() {
         sessionStorage.setItem("access_token", getHashParams().access_token);
-     setTimeout(() => {   
         window.location.replace("http://localhost:3000/search/artist");
-           }, 1000);
+          
    
           
     }

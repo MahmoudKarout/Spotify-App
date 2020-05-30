@@ -28,6 +28,9 @@ class App extends Component {
 
 
   render() {
+
+    const token = sessionStorage.getItem("access_token");
+
     return (
 
       <AppContainer>
@@ -35,12 +38,14 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
 
-            {/* {sessionStorage.getItem("access_token") ? */}
-              <Route path='/' exact component={ !sessionStorage.getItem("access_token") && sessionStorage.getItem("access_token") == "undefined" ?  Middle : LoginScreen } title="Login" /> 
-              {/* <Route path='/login' exact component={LoginScreen} title="Login" /> */}
-      
-            <Route path='/search/artist' exact component={Search} />
-            <Route path='/AlbumArtist/:ArtistId/:ArtistName' exact component={ArtistAlbums} />
+       
+            
+                <Route path='/login' exact component={LoginScreen} title="Login" />
+                <Route path='/' exact component={Middle} title="Login" />
+                <Route path='/search/artist' exact component={Search} />
+            
+                <Route path='/AlbumArtist/:ArtistId/:ArtistName' exact component={ArtistAlbums} />
+          
           </Switch>
         </BrowserRouter>
 

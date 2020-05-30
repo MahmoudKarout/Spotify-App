@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-
+import { getHashParams } from '../utils';
 const Login = styled.div`
 display: flex;
 height: calc(100vh - 100px);
@@ -42,14 +42,17 @@ const LoginScreen = class extends React.Component {
 
   componentDidMount() {
     // localStorage.removeItem(stateKey);
-    localStorage.clear();
-    sessionStorage.clear();
+      //  sessionStorage.setItem("access_token", getHashParams().access_token);
+    // window.location.replace("http://localhost:3000/search/artist");
+
     document.title = "Login";
 
-  }
-  componentDidUpdate() {
 
   }
+  componentDidUpdate(){
+ document.title = "Login";
+  }
+  
 
   handleClick = () => {
     const client_id = "e5abbee6e0fd4e4bbd080c6d212ca520" || process.env.CLIENT_ID;
@@ -73,10 +76,13 @@ const LoginScreen = class extends React.Component {
   render() {
 
     return (
+      <div>
       <Login>
         <h1>Spotify Profile</h1>
         <LoginButton onClick={this.handleClick}>Log in to Spotify</LoginButton>
       </Login>
+     
+      </div>
     )
   }
 };
