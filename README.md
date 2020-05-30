@@ -26,7 +26,7 @@ export REDIRECT_URI=YYYY
 
  
 
-### Things I Fixed: 
+## Things I Fixed: 
 
 1. The Urls are now readable
 2. Added Footer
